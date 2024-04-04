@@ -1,6 +1,5 @@
 import os
 from os import listdir
-import matplotlib.pyplot as plt
 from PIL import Image
 
 dir1 = '1369_12_Наклейки 3-D_3'
@@ -14,3 +13,16 @@ def create_dir():
     for dir in dirs:
         if not os.path.exists(f"Result\\{dir}"):
             os.makedirs(f"Result\\{dir}")
+
+def change_img():
+    for dir in dirs:
+        folder_dir = f"Для тестового\\{dir}"
+        for image in os.listdir(folder_dir):
+            if image.endswith(".png"):
+                img = Image.open(f"{folder_dir}\\{image}")
+                name, ext = os.path.splitext(image)
+                img.save(f"Result\\{dir}\\{name}.tiff")
+
+
+create_dir()
+change_img()
